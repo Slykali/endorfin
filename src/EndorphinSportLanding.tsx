@@ -507,6 +507,26 @@ export default function EndorphinSportLanding() {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, [mobileOpen]);
+
   const navLinks: { href: string; label: string }[] = [
     { href: "#hakkimizda", label: t.nav.about },
     { href: "#hizmetler", label: t.nav.services },
@@ -603,14 +623,12 @@ export default function EndorphinSportLanding() {
         </div>
 
         {mobileOpen ? (
-          <div className="md:hidden">
-            <div
-              className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-              aria-hidden
-            />
-            <div className="fixed right-0 top-0 z-50 h-full w-[88%] max-w-sm border-l border-white/10 bg-[#07070c]/95 backdrop-blur-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <div className="fixed inset-0 z-[60] bg-[#07070c]/95 backdrop-blur-2xl md:hidden">
+            <div className="mx-auto flex h-full w-full max-w-6xl flex-col px-5 py-4 sm:px-6">
+              <div
+                className="flex items-center justify-between border-b border-white/10 pb-4"
+                style={{ paddingTop: "max(0px, env(safe-area-inset-top))" }}
+              >
                 <div>
                   <div
                     className="text-sm font-black tracking-[0.22em]"
@@ -624,25 +642,28 @@ export default function EndorphinSportLanding() {
                 </div>
                 <button
                   type="button"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white"
                   onClick={() => setMobileOpen(false)}
                   aria-label={t.a11y.closeMenu}
                 >
                   <CloseIcon className="h-5 w-5" />
                 </button>
               </div>
-              <div className="flex flex-col gap-2 px-5 py-5">
+              <div
+                className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto py-6"
+                style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
+              >
                 {navLinks.map((l) => (
                   <a
                     key={l.href}
                     href={l.href}
-                    className="rounded-2xl border border-white/8 bg-white/[0.035] px-4 py-3 text-sm font-semibold text-white"
+                    className="rounded-2xl border border-white/8 bg-white/[0.035] px-5 py-4 text-base font-semibold text-white"
                     onClick={() => setMobileOpen(false)}
                   >
                     {l.label}
                   </a>
                 ))}
-                <div className="mt-3 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-black/35 p-1">
+                <div className="mt-2 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-black/35 p-1">
                   <button
                     type="button"
                     onClick={() => {
