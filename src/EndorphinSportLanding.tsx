@@ -615,89 +615,90 @@ export default function EndorphinSportLanding() {
           <div className="h-11 w-11 md:hidden" />
         </div>
 
-        {mobileOpen ? (
-          <div className="fixed inset-0 z-[60] bg-[#07070c]/95 backdrop-blur-2xl md:hidden">
-            <div className="mx-auto flex h-full w-full max-w-6xl flex-col px-5 py-4 sm:px-6">
-              <div
-                className="flex items-center justify-between border-b border-white/10 pb-4"
-                style={{ paddingTop: "max(0px, env(safe-area-inset-top))" }}
-              >
-                <div>
-                  <div
-                    className="text-sm font-black tracking-[0.22em]"
-                    style={{ color: COLORS.orange }}
-                  >
-                    ENDORPHIN
-                  </div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.4em] text-white/55">
-                    {VENUE_NAME}
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white"
-                  onClick={() => setMobileOpen(false)}
-                  aria-label={t.a11y.closeMenu}
-                >
-                  <CloseIcon className="h-5 w-5" />
-                </button>
-              </div>
-              <div
-                className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto py-6"
-                style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
-              >
-                {navLinks.map((l) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    className="rounded-2xl border border-white/8 bg-white/[0.035] px-5 py-4 text-base font-semibold text-white"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {l.label}
-                  </a>
-                ))}
-                <div className="mt-2 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-black/35 p-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setLang("tr");
-                      setMobileOpen(false);
-                    }}
-                    className={`rounded-xl py-3 text-[11px] font-black uppercase ${
-                      lang === "tr" ? "bg-white text-black shadow" : "text-white/60"
-                    }`}
-                  >
-                    Türkçe
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setLang("en");
-                      setMobileOpen(false);
-                    }}
-                    className={`rounded-xl py-3 text-[11px] font-black uppercase ${
-                      lang === "en" ? "bg-white text-black shadow" : "text-white/60"
-                    }`}
-                  >
-                    English
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : null}
       </header>
 
       {!mobileOpen ? (
         <button
           type="button"
           aria-label={t.a11y.openMenu}
-          className="fixed bottom-5 right-5 z-[80] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-black/90 text-white shadow-[0_18px_45px_-18px_rgba(0,0,0,0.95)] shadow-black/70 backdrop-blur md:hidden"
+          className="fixed bottom-5 right-5 z-[120] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-black/90 text-white shadow-[0_18px_45px_-18px_rgba(0,0,0,0.95)] shadow-black/70 backdrop-blur md:hidden"
           style={{ bottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
           onClick={() => setMobileOpen(true)}
         >
           <MenuIcon className="h-6 w-6" />
         </button>
+      ) : null}
+
+      {mobileOpen ? (
+        <div className="fixed inset-0 z-[130] bg-[#07070c]/95 backdrop-blur-2xl md:hidden">
+          <div className="mx-auto flex h-full w-full max-w-6xl flex-col px-5 py-4 sm:px-6">
+            <div
+              className="flex items-center justify-between border-b border-white/10 pb-4"
+              style={{ paddingTop: "max(0px, env(safe-area-inset-top))" }}
+            >
+              <div>
+                <div
+                  className="text-sm font-black tracking-[0.22em]"
+                  style={{ color: COLORS.orange }}
+                >
+                  ENDORPHIN
+                </div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.4em] text-white/55">
+                  {VENUE_NAME}
+                </div>
+              </div>
+              <button
+                type="button"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/12 bg-white/5 text-white"
+                onClick={() => setMobileOpen(false)}
+                aria-label={t.a11y.closeMenu}
+              >
+                <CloseIcon className="h-5 w-5" />
+              </button>
+            </div>
+            <div
+              className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto py-6"
+              style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
+            >
+              {navLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="rounded-2xl border border-white/8 bg-white/[0.035] px-5 py-4 text-base font-semibold text-white"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {l.label}
+                </a>
+              ))}
+              <div className="mt-2 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-black/35 p-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLang("tr");
+                    setMobileOpen(false);
+                  }}
+                  className={`rounded-xl py-3 text-[11px] font-black uppercase ${
+                    lang === "tr" ? "bg-white text-black shadow" : "text-white/60"
+                  }`}
+                >
+                  Türkçe
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLang("en");
+                    setMobileOpen(false);
+                  }}
+                  className={`rounded-xl py-3 text-[11px] font-black uppercase ${
+                    lang === "en" ? "bg-white text-black shadow" : "text-white/60"
+                  }`}
+                >
+                  English
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       ) : null}
 
       {/* Hero */}
