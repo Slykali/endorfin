@@ -612,14 +612,7 @@ export default function EndorphinSportLanding() {
             </div>
           </nav>
 
-          <button
-            type="button"
-            aria-label={t.a11y.openMenu}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-black/80 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] md:hidden"
-            onClick={() => setMobileOpen(true)}
-          >
-            <MenuIcon className="h-5 w-5" />
-          </button>
+          <div className="h-11 w-11 md:hidden" />
         </div>
 
         {mobileOpen ? (
@@ -694,6 +687,18 @@ export default function EndorphinSportLanding() {
           </div>
         ) : null}
       </header>
+
+      {!mobileOpen ? (
+        <button
+          type="button"
+          aria-label={t.a11y.openMenu}
+          className="fixed bottom-5 right-5 z-[80] inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-black/90 text-white shadow-[0_18px_45px_-18px_rgba(0,0,0,0.95)] shadow-black/70 backdrop-blur md:hidden"
+          style={{ bottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
+          onClick={() => setMobileOpen(true)}
+        >
+          <MenuIcon className="h-6 w-6" />
+        </button>
+      ) : null}
 
       {/* Hero */}
       <section id="hero" className="relative isolate min-h-[90vh] overflow-hidden pt-14">
